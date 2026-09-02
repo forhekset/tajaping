@@ -20,10 +20,15 @@ function pickRandom(arr, exclude) {
   return next
 }
 
-// 한글 자모 단위로 정확히 비교 (hangul-js 이용)
+// 줄바꿈(\n)은 스페이스로 입력해도 인정 — 비교용으로 정규화
+function normalizeForCompare(str) {
+  return str.replace(/\n/g, ' ')
+}
+
+// 한글 자모 단위로 정확히 비교 (hangul-js 이용, 줄바꿈=스페이스 허용)
 function compareHangul(target, typed) {
-  const targetJamo = Hangul.disassemble(target)
-  const typedJamo = Hangul.disassemble(typed)
+  const targetJamo = Hangul.disassemble(normalizeForCompare(target))
+  const typedJamo = Hangul.disassemble(normalizeForCompare(typed))
   let correct = 0
   for (let i = 0; i < typedJamo.length; i++) {
     if (typedJamo[i] === targetJamo[i]) correct++
@@ -78,7 +83,7 @@ export default function App() {
     if (!startTime) setStartTime(Date.now())
     setInput(val)
 
-    if (val === target) {
+    if (normalizeForCompare(val) === normalizeForCompare(target)) {
       clearInterval(timerRef.current)
       const timeSec = (Date.now() - startTime) / 1000
       const { correct, total } = compareHangul(target, val)
@@ -115,7 +120,10 @@ export default function App() {
     return chars.map((ch, i) => {
       let cls = 'char-pending'
       if (i < input.length) {
-        cls = input[i] === ch ? 'char-correct' : 'char-wrong'
+        const typedCh = input[i]
+        // 줄바꿈 위치엔 스페이스 입력도 정답으로 인정
+        const isMatch = typedCh === ch || (ch === '\n' && typedCh === ' ')
+        cls = isMatch ? 'char-correct' : 'char-wrong'
       } else if (i === input.length) {
         cls = 'char-cursor'
       }
