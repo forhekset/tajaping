@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Galmuri11&display=swap');
+@import url('https://fastly.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #000;
+}
+
+.dos-screen {
+  min-height: 100vh;
+  background: #000;
+  color: #b0b0b0;
+  font-family: 'Galmuri11', 'Courier New', monospace;
+  font-size: 18px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  cursor: text;
+}
+
+.dos-header {
+  border: 2px solid #00c000;
+  padding: 10px;
+  text-align: center;
+  color: #00ff00;
+  text-shadow: 0 0 4px #00ff0080;
+  letter-spacing: 2px;
+}
+
+.dos-menu {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.dos-tab {
+  background: #000;
+  color: #808080;
+  border: 1px solid #505050;
+  font-family: inherit;
+  font-size: 15px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.dos-tab:hover {
+  color: #00ff00;
+  border-color: #00c000;
+}
+
+.dos-tab.active {
+  color: #000;
+  background: #00c000;
+  border-color: #00ff00;
+  font-weight: bold;
+}
+
+.dos-select {
+  background: #000;
+  color: #00ff00;
+  border: 1px solid #505050;
+  font-family: inherit;
+  padding: 6px;
+}
+
+.dos-statusbar {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  border-top: 1px dashed #404040;
+  border-bottom: 1px dashed #404040;
+  padding: 8px 0;
+  color: #808080;
+  font-size: 14px;
+}
+
+.dos-textbox {
+  border: 2px solid #505050;
+  background: #050505;
+  padding: 20px;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.dos-target {
+  margin: 0;
+  font-family: inherit;
+  font-size: 22px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.char-pending {
+  color: #606060;
+}
+
+.char-correct {
+  color: #00ff00;
+}
+
+.char-wrong {
+  color: #ff3030;
+  background: #400000;
+}
+
+.char-cursor {
+  color: #000;
+  background: #00ff00;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% {
+    background: #008000;
+  }
+}
+
+.dos-input {
+  background: #000;
+  color: #00ff00;
+  border: 2px solid #00c000;
+  font-family: inherit;
+  font-size: 20px;
+  padding: 12px;
+  resize: none;
+  outline: none;
+}
+
+.dos-input:focus {
+  border-color: #00ff00;
+  box-shadow: 0 0 8px #00ff0060;
+}
+
+.dos-footer {
+  color: #505050;
+  font-size: 13px;
+  text-align: center;
+  border-top: 1px dashed #303030;
+  padding-top: 10px;
+}
